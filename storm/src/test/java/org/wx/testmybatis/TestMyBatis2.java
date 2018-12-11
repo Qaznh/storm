@@ -22,8 +22,9 @@ public class TestMyBatis2 {
 	private static Logger logger = Logger.getLogger(TestMyBatis.class);  
 //  private ApplicationContext ac = null;  
     @Resource  
-    private INewsService newsService = null;  
-    private IStudentService studentService = null; 
+    private IStudentService studentService1 = null; 
+    @Resource
+    private INewsService newsService = null;
 //  @Before  
 //  public void before() {  
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
@@ -31,20 +32,12 @@ public class TestMyBatis2 {
 //  }  
   
     @Test  
-    public void test1() {  
-    	//String keyword = "泽荃明天要去广州";
-    	//keywordService.putKeyword(keyword);
-    	//keywordService.delKeyword(keyword);
-    	//int count = keywordService.getKeywordCount();
-    	//String studentId = news.getStuId();
-    	//Student st = studentService.getStudentById(studentId);
-    	//String b = st.getId();
-    	//int a = 1;
-    	//News news = newsService.getNewsById(a);
-    	//String stu_id = news.getStuId();
-    	//System.out.println(stu_id);
-    	String ab = "1614080903217";
-    	Student st = studentService.getStudentById(ab);
+    public void test1() { 
+    	int a = 1;
+    	News news = newsService.getNewsById(a);
+    	String stu_id = news.getStuId();
+    	String id = stu_id;
+    	Student st = studentService1.getStudentById(id);
     	String pw = st.getPassword();
     	System.out.println(pw);
         logger.info(pw);

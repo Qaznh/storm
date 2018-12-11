@@ -1,5 +1,6 @@
 package org.wx.testmybatis;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.annotation.Resource;  
@@ -12,9 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  
 import com.alibaba.fastjson.JSON;
 import com.cn.wx.pojo.News;
-import com.cn.wx.pojo.Student;
 import com.cn.wx.service.INewsService;
-import com.cn.wx.service.IStudentService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类  
@@ -40,19 +39,29 @@ public class TestMyBatis {
     	//String studentId = news.getStuId();
     	//Student st = studentService.getStudentById(studentId);
     	//String b = st.getId();
-    	int a = 1;
-    	News news = newsService.getNewsById(a);
-    	String stu_id = news.getStuId();
-    	Date dt = news.getCreateTime();
     	//String dd = dt.toString();
-    	System.out.println(stu_id);
     	//Student st = studentService.getStudentById("1614080903221");
     	//String pw = st.getPassword();
     	//System.out.println(pw);
-        logger.info(dt);
+    	
+        Timestamp datetime = new Timestamp(System.currentTimeMillis());
+        News news = new News();
+        
+        String stu_id = "1614080903221";
+    	int kw_id = 1;
+    	String news_img = null;
+        String news_cont = null; 
+		news.setStuId(stu_id);
+		news.setKwId(kw_id);
+		news.setNewsCont(news_cont);
+		news.setNewsImg(news_img);
+		news.setCreateTime(datetime);
+		int a = newsService.putNews(stu_id, kw_id, news_img, news_cont, datetime);
+		
+        logger.info(a);
         // System.out.println(user.getUserName());  
         // logger.info("值："+user.getUserName());  
-        logger.info(JSON.toJSONString(stu_id));
+        logger.info(JSON.toJSONString(a));
         
     } 
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Keywords;
 import com.cn.wx.service.IKeywordService;
 
@@ -33,8 +32,8 @@ public class KeywordController {
 		for(int i=1;i<=count;i++){
 			Keywords kw = keywordService.getKeywordById(i);
 			String kws = kw.getKeyword();
-			JSONObject json = GetData.retuKeywordJson(i, kws);
-			arry.add(json);
+			//JSONObject json = GetData.retuKeywordJson(i, kws);
+			arry.add(kws);
 		}
 		response.setCharacterEncoding("UTF-8");
 		return arry;

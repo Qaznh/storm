@@ -1,5 +1,7 @@
 package com.cn.wx.service.impl;
 
+import java.sql.Timestamp;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -14,5 +16,16 @@ public class NewsServiceImpl implements INewsService{
 	private NewsMapper newsDao;
 	public News getNewsById(int newsId){
 		return this.newsDao.selectByPrimaryKey(newsId);
+	}
+	
+	public int putNews(String stu_id,int kw_id,String news_img,String news_cont,Timestamp datetime){
+		News news = new News();
+		news.setStuId(stu_id);
+		news.setKwId(kw_id);
+		news.setNewsCont(news_cont);
+		news.setNewsImg(news_img);
+		news.setCreateTime(datetime);
+	    int a = this.newsDao.insertSelective(news);
+	    return a;
 	}
 }

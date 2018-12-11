@@ -11,4 +11,6 @@ public interface IKeywordService {
 	public void delKeyword(String keyword);
 	
 	public int getKeywordCount();
+	
+	public Keywords getKeywordByKeyword(String keyword);
 }

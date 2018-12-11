@@ -12,10 +12,13 @@ public interface KeywordsMapper {
     int insertSelective(Keywords record);
 
     Keywords selectByPrimaryKey(Integer kwId);
+    
+    Keywords selectByKeyword(String keyword);
 
     int updateByPrimaryKeySelective(Keywords record);
 
     int updateByPrimaryKey(Keywords record);
     
     int selectCount();
+
 }

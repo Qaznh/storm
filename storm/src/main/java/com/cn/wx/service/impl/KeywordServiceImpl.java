@@ -34,4 +34,8 @@ public class KeywordServiceImpl implements IKeywordService{
 		kw.setKeyword(keyword);
 		this.keywordDao.deleteByKeyword(keyword);
 	}
+	
+	public Keywords getKeywordByKeyword(String keyword){
+		return this.keywordDao.selectByKeyword(keyword);
+	}
 }
