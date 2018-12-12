@@ -1,6 +1,5 @@
 package com.cn.wx.controller;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 
 
 import com.alibaba.fastjson.JSONArray;
@@ -29,6 +28,10 @@ import com.cn.wx.service.INewsService;
 @Controller
 @RequestMapping("/news")
 public class NewsController {
+	
+	static String news_imgurl=null;
+	
+	
 	@Resource
 	private INewsService newsService;
 	@Resource
@@ -43,43 +46,70 @@ public class NewsController {
 	}
 	
 
-    @RequestMapping(value={"/addNews"},method=RequestMethod.POST)
+	
+	@RequestMapping(value={"/upload"})
     @ResponseBody
-    public boolean addNews(HttpServletRequest request,HttpServletResponse response,@RequestParam("file")MultipartFile[] files)
+    public void upload(HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) 
+			 throws IOException {
+	   
+       System.out.println("执行upload");
+       request.setCharacterEncoding("UTF-8");
+       String id = request.getParameter("id");
+       if(!file.isEmpty()) {
+        
+           String fileName = file.getOriginalFilename();
+           //System.out.println(fileName); wx4e7f9e9721288267.o6zAJsxcKurhZtmz7TBYVXJCUG4I.BF1ydRZlvzQt2b04df3ecc1d94afddff082d139c6f15.jpg
+           
+           String path = null;
+           String type = null;
+           type = fileName.indexOf(".") != -1 ? fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()) : null;
+        
+           if (type != null) {
+               if ("GIF".equals(type.toUpperCase())||"PNG".equals(type.toUpperCase())||"JPG".equals(type.toUpperCase())) {
+                   // 项目在容器中实际发布运行的根路径
+            	   String realPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.0\\webapps\\storm\\Image\\news_image";
+                   //String realPath = "Q:\\Users\\Aqzh\\git\\storm\\src\\main\\webapp\\Image\\news_image\\";
+                   // 自定义的文件名称
+                   String trueFileName = id +"_"+ UUID.randomUUID().toString()+"."+type.toLowerCase();
+                   System.out.println(trueFileName);
+                   //System.out.println(trueFileName);
+                   // 设置存放图片文件的路径
+                   path = realPath + trueFileName; 
+                   file.transferTo(new File(path));
+                   String serverPath1 = "http://10.101.112.47:8080/storm/Image/news_image/";
+                   news_imgurl = serverPath1 + trueFileName;
+                   
+               }
+           }
+         }
+      }
+	
+	
+    @RequestMapping(value={"/addNews"})
+    @ResponseBody
+    public boolean addNews(HttpServletRequest request)
 			 throws ServletException, IOException{
-    	JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
-    	String stu_id = json1.getString("id");
+    	
+    	request.setCharacterEncoding("UTF-8");
+    	JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);   	
+    	String id = json1.getString("id");
+    	System.out.println(id);
     	String keyword = json1.getString("keyword");
+    	System.out.println(keyword);
     	Keywords kw = keywordService.getKeywordByKeyword(keyword);
     	int kw_id = kw.getKwId();
-        String news_cont = json1.getString("news_cont"); 
+        String news_cont = json1.getString("news_cont");
+        System.out.println(news_cont);
         Timestamp datetime = new Timestamp(System.currentTimeMillis());
-        String news_img = null;
-        System.out.println(stu_id);
-        if(files!=null && files.length>=1){
-        	BufferedOutputStream bw = null;
-        	String fileName = files[0].getOriginalFilename();
-        	
-
-    	//MultipartHttpServletRequest req = (MultipartHttpServletRequest)request;
-       //MultipartFile multipartFile =  req.getFile("file");
-        //if(multipartFile!=null){
         
-        String realPath = "Q:\\Users\\Aqzh\\git\\storm\\src\\main\\webapp\\Image\\news_image";
-        String serverPath1 = "http://10.101.112.47:8080/storm/Image/news_image/";
-        String n_imgName = UUID.randomUUID().toString();
-        File file  =  new File(realPath,n_imgName);
-       // multipartFile.transferTo(file);
-        news_img = serverPath1+n_imgName;
-        }
-        
-        
-        int tag = newsService.putNews(stu_id, kw_id, news_img, news_cont, datetime);
+        int tag = newsService.putNews(id, kw_id, news_imgurl, news_cont, datetime);
+    
         if(tag==1)
     	  return true;
         else
           return false;
-    }
-
-	
+    
+   }
+    
+    
 }
