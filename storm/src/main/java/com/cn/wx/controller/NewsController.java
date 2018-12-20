@@ -76,7 +76,7 @@ public class NewsController {
                    // 设置存放图片文件的路径
                    path = realPath + trueFileName; 
                    file.transferTo(new File(path));
-                   String serverPath1 = "http://10.101.112.47:8080/storm/Image/news_image/";
+                   String serverPath1 = "http://10.101.112.105:8080/storm/Image/news_image/";
                    news_imgurl = serverPath1 + trueFileName;
                    
                }
