@@ -3,6 +3,8 @@ package com.cn.wx.controller;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Keywords;
+import com.cn.wx.pojo.News;
 import com.cn.wx.service.IKeywordService;
 import com.cn.wx.service.INewsService;
 
@@ -46,6 +49,26 @@ public class NewsController {
 	}
 	
 
+	@RequestMapping(value={"/showNewsDesc"},method=RequestMethod.POST)
+	@ResponseBody
+	public Object showNewsDesc(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+		JSONObject json = new JSONObject();
+    	News nw = newsService.getNewsDesc();
+    	json.put("news_id", nw.getNewsId());
+    	json.put("kw_id",nw.getKwId());
+    	json.put("stu_id",nw.getStuId());
+    	json.put("news_cont",nw.getNewsCont());
+    	json.put("news_image", nw.getNewsImg());
+    	json.put("comment_num", nw.getCommentNum());
+    	json.put("praise_num", nw.getPraiseNum());
+    	json.put("browse_num", nw.getBrowseNum());
+    	Date d = nw.getCreateTime();
+    	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
+    	json.put("create_time", sdf);
+		return json;
+	}
+	
 	
 	@RequestMapping(value={"/upload"})
     @ResponseBody
@@ -67,7 +90,7 @@ public class NewsController {
            if (type != null) {
                if ("GIF".equals(type.toUpperCase())||"PNG".equals(type.toUpperCase())||"JPG".equals(type.toUpperCase())) {
                    // 项目在容器中实际发布运行的根路径
-            	   String realPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.0\\webapps\\storm\\Image\\news_image";
+            	   String realPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.0\\webapps\\storm\\Image\\news_image\\";
                    //String realPath = "Q:\\Users\\Aqzh\\git\\storm\\src\\main\\webapp\\Image\\news_image\\";
                    // 自定义的文件名称
                    String trueFileName = id +"_"+ UUID.randomUUID().toString()+"."+type.toLowerCase();

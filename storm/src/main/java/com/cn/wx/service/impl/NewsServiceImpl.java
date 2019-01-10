@@ -28,4 +28,8 @@ public class NewsServiceImpl implements INewsService{
 	    int a = this.newsDao.insertSelective(news);
 	    return a;
 	}
+	
+	public News getNewsDesc(){
+		return this.newsDao.selectDesc();
+	}
 }

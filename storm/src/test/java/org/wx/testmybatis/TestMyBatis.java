@@ -1,7 +1,10 @@
 package org.wx.testmybatis;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;  
 
@@ -26,7 +29,7 @@ public class TestMyBatis {
 	private static Logger logger = Logger.getLogger(TestMyBatis.class);  
 //  private ApplicationContext ac = null;  
     @Resource  
-    private IXiaoliService xiaoliService = null;  
+    private INewsService newsService = null;  
 //  @Before  
 //  public void before() {  
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
@@ -36,14 +39,22 @@ public class TestMyBatis {
     @Test  
     public void test1() {  
         
-		int count = xiaoliService.getXiaoliCount();
-		JSONObject json = new JSONObject();
-		for(int id=1;id<=count;id++){
-		String xid=String.valueOf(id);
-    	 Xiaolis xl = xiaoliService.getXiaoliById(id);
-    	 String url=xl.getXiaoliUrl();
-    	 json.put(xid, url);
-		}
+    	
+    	
+    	JSONObject json = new JSONObject();
+    	News nw = newsService.getNewsDesc();
+    	json.put("news_id", nw.getNewsId());
+    	json.put("kw_id",nw.getKwId());
+    	json.put("stu_id",nw.getStuId());
+    	json.put("news_cont",nw.getNewsCont());
+    	json.put("news_image", nw.getNewsImg());
+    	json.put("comment_num", nw.getCommentNum());
+    	json.put("praise_num", nw.getPraiseNum());
+    	json.put("browse_num", nw.getBrowseNum());
+    	Date d = nw.getCreateTime();
+    	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
+    	json.put("create_time", sdf);
+
         logger.info(json);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
