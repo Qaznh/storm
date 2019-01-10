@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.News;
 import com.cn.wx.pojo.Xiaolis;
+import com.cn.wx.service.ICommentService;
 import com.cn.wx.service.INewsService;
 import com.cn.wx.service.IXiaoliService;
 
@@ -29,7 +30,7 @@ public class TestMyBatis {
 	private static Logger logger = Logger.getLogger(TestMyBatis.class);  
 //  private ApplicationContext ac = null;  
     @Resource  
-    private INewsService newsService = null;  
+    private ICommentService commentService = null;  
 //  @Before  
 //  public void before() {  
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
@@ -39,26 +40,15 @@ public class TestMyBatis {
     @Test  
     public void test1() {  
         
-    	
-    	
-    	JSONObject json = new JSONObject();
-    	News nw = newsService.getNewsDesc();
-    	json.put("news_id", nw.getNewsId());
-    	json.put("kw_id",nw.getKwId());
-    	json.put("stu_id",nw.getStuId());
-    	json.put("news_cont",nw.getNewsCont());
-    	json.put("news_image", nw.getNewsImg());
-    	json.put("comment_num", nw.getCommentNum());
-    	json.put("praise_num", nw.getPraiseNum());
-    	json.put("browse_num", nw.getBrowseNum());
-    	Date d = nw.getCreateTime();
-    	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
-    	json.put("create_time", sdf);
-
-        logger.info(json);
+    	int newsId = 64;
+    	String stu_id = "1614080903221";
+    	String comcont = "abc";
+    	Timestamp datetime = new Timestamp(System.currentTimeMillis());
+    	int tag = commentService.putComment(newsId, stu_id, comcont, datetime);
+        logger.info(tag);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(json));
+        logger.info(JSON.toJSONString(tag));
         
     } 
 }
