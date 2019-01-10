@@ -38,6 +38,8 @@ public class CommentController {
 		return arry;
 	}
 	
+	
+	
 	@RequestMapping(value={"/addComt"})
     @ResponseBody
 	public boolean addComt(HttpServletRequest request)
