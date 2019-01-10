@@ -32,4 +32,8 @@ public class NewsServiceImpl implements INewsService{
 	public News getNewsDesc(){
 		return this.newsDao.selectDesc();
 	}
+	
+	public int addNewsCmNum(News news){
+		return this.newsDao.updateByPrimaryKeySelective(news);
+	}
 }

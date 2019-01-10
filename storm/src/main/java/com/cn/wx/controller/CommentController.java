@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cn.wx.pojo.News;
 import com.cn.wx.service.ICommentService;
 import com.cn.wx.service.INewsService;
 
@@ -50,7 +51,12 @@ public class CommentController {
 		int tag = commentService.putComment(newsId, stuId, comcont, datetime);
 		if(tag==1)
 		{
-			
+			News news=newsService.getNewsById(newsId);
+	    	int comment_num = news.getCommentNum();
+	    	comment_num++;
+	    	news.setCommentNum(comment_num);
+	    	int tag2 =newsService.addNewsCmNum(news);
+			System.out.println(tag2);
 			return true;
 			}
 		else

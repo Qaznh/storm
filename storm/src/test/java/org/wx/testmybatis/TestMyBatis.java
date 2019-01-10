@@ -30,7 +30,7 @@ public class TestMyBatis {
 	private static Logger logger = Logger.getLogger(TestMyBatis.class);  
 //  private ApplicationContext ac = null;  
     @Resource  
-    private ICommentService commentService = null;  
+    private INewsService newsService = null;  
 //  @Before  
 //  public void before() {  
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
@@ -41,10 +41,12 @@ public class TestMyBatis {
     public void test1() {  
         
     	int newsId = 64;
-    	String stu_id = "1614080903221";
-    	String comcont = "abc";
-    	Timestamp datetime = new Timestamp(System.currentTimeMillis());
-    	int tag = commentService.putComment(newsId, stu_id, comcont, datetime);
+    	News news=newsService.getNewsById(newsId);
+    	int comment_num = news.getCommentNum();
+    	comment_num++;
+    	news.setCommentNum(comment_num);
+    	int tag =newsService.addNewsCmNum(news);
+    	
         logger.info(tag);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
