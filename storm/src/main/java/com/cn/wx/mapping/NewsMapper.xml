@@ -36,7 +36,7 @@
     from news
     order by news_id DESC limit 1
   </select>
-  <select id="selectByPageno" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPageno" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select
     <include refid="Base_Column_List" />
     ,

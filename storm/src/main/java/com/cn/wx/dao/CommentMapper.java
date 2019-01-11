@@ -1,5 +1,9 @@
 package com.cn.wx.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.cn.wx.pojo.Comment;
 
 public interface CommentMapper {
@@ -16,4 +20,6 @@ public interface CommentMapper {
     int updateByPrimaryKeyWithBLOBs(Comment record);
 
     int updateByPrimaryKey(Comment record);
+    
+    List<Comment> selectByPage(@Param("start")int start,@Param("news_id")Integer news_id);
 }

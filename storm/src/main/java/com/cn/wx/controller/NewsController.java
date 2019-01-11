@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -24,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.cn.wx.pojo.Keywords;
 import com.cn.wx.pojo.News;
 import com.cn.wx.service.IKeywordService;
 import com.cn.wx.service.INewsService;
@@ -45,7 +45,12 @@ public class NewsController {
 	@ResponseBody
 	public Object showNews(HttpServletRequest request,HttpServletResponse response)
 			 throws ServletException, IOException{
+		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+		int newsid = json.getIntValue("news_id");
+		//System.out.println(newsid);
+		News nw = newsService.getNewsById(newsid);
 		JSONArray arry = new JSONArray();
+		arry.add(nw);
 		return arry;
 	}
 	
@@ -138,11 +143,29 @@ public class NewsController {
     public Object showNewsPage(HttpServletRequest request,HttpServletResponse response)
 			 throws ServletException, IOException{
     	JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
-    	int start = (json1.getIntValue("pageNo")*10);
+    	System.out.println(json1.getIntValue("page"));
+    	int start = (json1.getIntValue("page")*10);
     	List<News> nws= newsService.getNewsByPage(start);
-    	JSONArray arry = new JSONArray();
-    	arry.add(nws);
-		return arry;
+    	
+    	List<JSONObject> ns= new ArrayList<JSONObject>();
+    	for(int i=0;i<nws.size();i++){
+    		News b = nws.get(0);
+    		JSONObject json = new JSONObject();
+    		json.put("news_id", b.getNewsId());
+        	json.put("keyword",b.getKeyword());
+        	json.put("stu_id",b.getStuId());
+        	json.put("news_cont",b.getNewsCont());
+        	json.put("news_image", b.getNewsImg());
+        	json.put("comment_num", b.getCommentNum());
+        	json.put("praise_num", b.getPraiseNum());
+        	json.put("browse_num", b.getBrowseNum());
+        	Date d = b.getCreateTime();
+        	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
+        	json.put("create_time", sdf);
+        	ns.add(json);
+    	}
+    	
+		return ns;
     }
     
 }

@@ -24,6 +24,15 @@
     from news_comment
     where comment_id = #{commentId,jdbcType=INTEGER}
   </select>
+  <select id="selectByPage" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news_comment
+    where #{news_id}
+    order by news_id DESC limit #{start},5
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from news_comment
     where comment_id = #{commentId,jdbcType=INTEGER}

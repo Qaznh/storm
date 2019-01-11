@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.cn.wx.pojo.News;
 
 public interface NewsMapper {
+	
     int deleteByPrimaryKey(Integer newsId);
 
     int insert(News record);

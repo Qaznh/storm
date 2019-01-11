@@ -1,6 +1,7 @@
 package com.cn.wx.service.impl;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -26,8 +27,11 @@ public class CommentServiceImpl implements ICommentService{
 		comt.setCreateTime(datetime);
 		comt.setCommentCont(commentCont);
 		int a = this.commentDao.insertSelective(comt);
-		return a;
-		
+		return a;		
+	}
+	
+	public List<Comment> getCommentByPage(int start,int news_id){
+		return this.commentDao.selectByPage(start, news_id);
 	}
 
 

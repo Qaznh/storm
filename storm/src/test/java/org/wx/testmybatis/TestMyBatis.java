@@ -2,6 +2,7 @@ package org.wx.testmybatis;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.util.ClassUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.cn.wx.pojo.Comment;
 import com.cn.wx.pojo.Keywords;
 import com.cn.wx.pojo.News;
 import com.cn.wx.pojo.Xiaolis;
@@ -37,7 +39,7 @@ public class TestMyBatis {
     private INewsService newsService = null;  
     
     @Resource  
-    private IKeywordService keywordService = null;
+    private ICommentService commentService = null;
 //  @Before  
 //  public void before() {  
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
@@ -54,13 +56,30 @@ public class TestMyBatis {
     	news.setCommentNum(comment_num);
     	int tag =newsService.addNewsCmNum(news);
     	*/
-    	int start = 0;
-    	List<News> nws = newsService.getNewsByPage(start);
-    	News a =nws.get(0);
-        logger.info(a);
+    	List<News> news = newsService.getNewsByPage(1);
+    	List<JSONObject> ns= new ArrayList<JSONObject>();
+    	for(int i=0;i<news.size();i++){
+    		News b = news.get(0);
+    		JSONObject json = new JSONObject();
+    		json.put("news_id", b.getNewsId());
+        	json.put("keyword",b.getKeyword());
+        	json.put("stu_id",b.getStuId());
+        	json.put("news_cont",b.getNewsCont());
+        	json.put("news_image", b.getNewsImg());
+        	json.put("comment_num", b.getCommentNum());
+        	json.put("praise_num", b.getPraiseNum());
+        	json.put("browse_num", b.getBrowseNum());
+        	Date d = b.getCreateTime();
+        	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
+        	json.put("create_time", sdf);
+        	ns.add(json);
+    	}
+    	
+    	//Date d = b.getCreateTime();
+        logger.info(ns);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(a));
+        logger.info(JSON.toJSONString(ns));
         
     } 
 }
