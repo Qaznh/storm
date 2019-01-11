@@ -90,7 +90,7 @@ public class NewsController {
            if (type != null) {
                if ("GIF".equals(type.toUpperCase())||"PNG".equals(type.toUpperCase())||"JPG".equals(type.toUpperCase())) {
                    // 项目在容器中实际发布运行的根路径
-            	   String realPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.0\\webapps\\storm\\Image\\news_image\\";
+            	   String realPath = request.getSession().getServletContext().getRealPath("")+"Image\\news_image\\";
                    //String realPath = "Q:\\Users\\Aqzh\\git\\storm\\src\\main\\webapp\\Image\\news_image\\";
                    // 自定义的文件名称
                    String trueFileName = id +"_"+ UUID.randomUUID().toString()+"."+type.toLowerCase();

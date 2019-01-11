@@ -12,8 +12,9 @@ import org.apache.log4j.Logger;
 import org.junit.Test;  
 import org.junit.runner.RunWith;  
 import org.springframework.test.context.ContextConfiguration;  
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;  
- 
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.ClassUtils;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.News;
@@ -40,17 +41,19 @@ public class TestMyBatis {
     @Test  
     public void test1() {  
         
-    	int newsId = 64;
+    	/*int newsId = 64;
     	News news=newsService.getNewsById(newsId);
     	int comment_num = news.getCommentNum();
     	comment_num++;
     	news.setCommentNum(comment_num);
     	int tag =newsService.addNewsCmNum(news);
-    	
-        logger.info(tag);
+    	*/
+    	 String a = "hk";
+    	 System.out.println("C:\\Program Files\\Apache Software Foundation\\Tomcat 8.0\\webapps\\storm\\Image\\news_image\\");
+        logger.info(a);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(tag));
+        logger.info(JSON.toJSONString(a));
         
     } 
 }
