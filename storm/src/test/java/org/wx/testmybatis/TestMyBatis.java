@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;  
@@ -17,9 +18,11 @@ import org.springframework.util.ClassUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.cn.wx.pojo.Keywords;
 import com.cn.wx.pojo.News;
 import com.cn.wx.pojo.Xiaolis;
 import com.cn.wx.service.ICommentService;
+import com.cn.wx.service.IKeywordService;
 import com.cn.wx.service.INewsService;
 import com.cn.wx.service.IXiaoliService;
 
@@ -32,6 +35,9 @@ public class TestMyBatis {
 //  private ApplicationContext ac = null;  
     @Resource  
     private INewsService newsService = null;  
+    
+    @Resource  
+    private IKeywordService keywordService = null;
 //  @Before  
 //  public void before() {  
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
@@ -48,8 +54,9 @@ public class TestMyBatis {
     	news.setCommentNum(comment_num);
     	int tag =newsService.addNewsCmNum(news);
     	*/
-    	 String a = "hk";
-    	 System.out.println("C:\\Program Files\\Apache Software Foundation\\Tomcat 8.0\\webapps\\storm\\Image\\news_image\\");
+    	int start = 0;
+    	List<News> nws = newsService.getNewsByPage(start);
+    	News a =nws.get(0);
         logger.info(a);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  

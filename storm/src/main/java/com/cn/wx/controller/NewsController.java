@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -56,7 +57,7 @@ public class NewsController {
 		JSONObject json = new JSONObject();
     	News nw = newsService.getNewsDesc();
     	json.put("news_id", nw.getNewsId());
-    	json.put("kw_id",nw.getKwId());
+    	json.put("keyword",nw.getKeyword());
     	json.put("stu_id",nw.getStuId());
     	json.put("news_cont",nw.getNewsCont());
     	json.put("news_image", nw.getNewsImg());
@@ -119,13 +120,11 @@ public class NewsController {
     	System.out.println(id);
     	String keyword = json1.getString("keyword");
     	System.out.println(keyword);
-    	Keywords kw = keywordService.getKeywordByKeyword(keyword);
-    	int kw_id = kw.getKwId();
         String news_cont = json1.getString("news_cont");
         System.out.println(news_cont);
         Timestamp datetime = new Timestamp(System.currentTimeMillis());
         
-        int tag = newsService.putNews(id, kw_id, news_imgurl, news_cont, datetime);
+        int tag = newsService.putNews(id, keyword, news_imgurl, news_cont, datetime);
     
         if(tag==1)
     	  return true;
@@ -134,5 +133,16 @@ public class NewsController {
     
    }
     
+    @RequestMapping(value={"/showNewsPage"})
+    @ResponseBody
+    public Object showNewsPage(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+    	JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
+    	int start = (json1.getIntValue("pageNo")*10);
+    	List<News> nws= newsService.getNewsByPage(start);
+    	JSONArray arry = new JSONArray();
+    	arry.add(nws);
+		return arry;
+    }
     
 }

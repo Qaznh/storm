@@ -1,5 +1,9 @@
 package com.cn.wx.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.cn.wx.pojo.News;
 
 public interface NewsMapper {
@@ -16,6 +20,7 @@ public interface NewsMapper {
     int updateByPrimaryKeyWithBLOBs(News record);
 
     int updateByPrimaryKey(News record);
-    
     News selectDesc();
+    
+    List<News> selectByPageno(@Param("start")int start);
 }

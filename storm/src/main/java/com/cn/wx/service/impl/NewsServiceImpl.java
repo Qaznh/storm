@@ -1,6 +1,7 @@
 package com.cn.wx.service.impl;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -18,10 +19,10 @@ public class NewsServiceImpl implements INewsService{
 		return this.newsDao.selectByPrimaryKey(newsId);
 	}
 	
-	public int putNews(String stu_id,int kw_id,String news_img,String news_cont,Timestamp datetime){
+	public int putNews(String stu_id,String keyword,String news_img,String news_cont,Timestamp datetime){
 		News news = new News();
 		news.setStuId(stu_id);
-		news.setKwId(kw_id);
+		news.setKeyword(keyword);
 		news.setNewsCont(news_cont);
 		news.setNewsImg(news_img);
 		news.setCreateTime(datetime);
@@ -36,4 +37,10 @@ public class NewsServiceImpl implements INewsService{
 	public int addNewsCmNum(News news){
 		return this.newsDao.updateByPrimaryKeySelective(news);
 	}
+	
+	public List<News> getNewsByPage(int start){
+		return this.newsDao.selectByPageno(start);
+	}
+	
+	
 }

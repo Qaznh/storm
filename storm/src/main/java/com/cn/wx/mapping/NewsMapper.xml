@@ -3,7 +3,7 @@
 <mapper namespace="com.cn.wx.dao.NewsMapper" >
   <resultMap id="BaseResultMap" type="com.cn.wx.pojo.News" >
     <id column="news_id" property="newsId" jdbcType="INTEGER" />
-    <result column="kw_id" property="kwId" jdbcType="INTEGER" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
     <result column="stu_id" property="stuId" jdbcType="CHAR" />
     <result column="news_img" property="newsImg" jdbcType="VARCHAR" />
     <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
@@ -15,7 +15,7 @@
     <result column="news_cont" property="newsCont" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    news_id, kw_id, stu_id, news_img, comment_num, praise_num, browse_num, create_time
+    news_id, keyword, stu_id, news_img, comment_num, praise_num, browse_num, create_time
   </sql>
   <sql id="Blob_Column_List" >
     news_cont
@@ -28,7 +28,7 @@
     from news
     where news_id = #{newsId,jdbcType=INTEGER}
   </select>
-  <select id="selectDesc" resultMap="ResultMapWithBLOBs" >
+    <select id="selectDesc" resultMap="ResultMapWithBLOBs" >
     select 
     <include refid="Base_Column_List" />
     ,
@@ -36,16 +36,24 @@
     from news
     order by news_id DESC limit 1
   </select>
+  <select id="selectByPageno" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    order by news_id DESC limit #{start},10
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from news
     where news_id = #{newsId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cn.wx.pojo.News" >
-    insert into news (news_id, kw_id, stu_id, 
+    insert into news (news_id, keyword, stu_id, 
       news_img, comment_num, praise_num, 
       browse_num, create_time, news_cont
       )
-    values (#{newsId,jdbcType=INTEGER}, #{kwId,jdbcType=INTEGER}, #{stuId,jdbcType=CHAR}, 
+    values (#{newsId,jdbcType=INTEGER}, #{keyword,jdbcType=VARCHAR}, #{stuId,jdbcType=CHAR}, 
       #{newsImg,jdbcType=VARCHAR}, #{commentNum,jdbcType=INTEGER}, #{praiseNum,jdbcType=INTEGER}, 
       #{browseNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{newsCont,jdbcType=LONGVARCHAR}
       )
@@ -56,8 +64,8 @@
       <if test="newsId != null" >
         news_id,
       </if>
-      <if test="kwId != null" >
-        kw_id,
+      <if test="keyword != null" >
+        keyword,
       </if>
       <if test="stuId != null" >
         stu_id,
@@ -85,8 +93,8 @@
       <if test="newsId != null" >
         #{newsId,jdbcType=INTEGER},
       </if>
-      <if test="kwId != null" >
-        #{kwId,jdbcType=INTEGER},
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
       </if>
       <if test="stuId != null" >
         #{stuId,jdbcType=CHAR},
@@ -114,8 +122,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cn.wx.pojo.News" >
     update news
     <set >
-      <if test="kwId != null" >
-        kw_id = #{kwId,jdbcType=INTEGER},
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
       </if>
       <if test="stuId != null" >
         stu_id = #{stuId,jdbcType=CHAR},
@@ -143,7 +151,7 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.wx.pojo.News" >
     update news
-    set kw_id = #{kwId,jdbcType=INTEGER},
+    set keyword = #{keyword,jdbcType=VARCHAR},
       stu_id = #{stuId,jdbcType=CHAR},
       news_img = #{newsImg,jdbcType=VARCHAR},
       comment_num = #{commentNum,jdbcType=INTEGER},
@@ -155,7 +163,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cn.wx.pojo.News" >
     update news
-    set kw_id = #{kwId,jdbcType=INTEGER},
+    set keyword = #{keyword,jdbcType=VARCHAR},
       stu_id = #{stuId,jdbcType=CHAR},
       news_img = #{newsImg,jdbcType=VARCHAR},
       comment_num = #{commentNum,jdbcType=INTEGER},
