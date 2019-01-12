@@ -83,18 +83,27 @@ public class TestMyBatis {
     	}
     	*/
     	
-    	int commentId = 18;
-    	String fromStuId = "1614080903221";
-    	String toStuId = "1614080903221";
-    	String replyCont = "abc";
-    	Timestamp datetime = new Timestamp(System.currentTimeMillis());
-    	int tag = replyService.putReply(commentId, fromStuId, toStuId, replyCont, datetime);
+    	List<Reply> repl = replyService.getReplyByComtId(1);
+    	List<JSONObject> ns= new ArrayList<JSONObject>();
+    	for(int i=0;i<repl.size();i++){
+    		Reply re = repl.get(i);
+    		JSONObject json1 = new JSONObject();
+    		json1.put("reply_id", re.getReplyId());
+    		json1.put("comment_id", re.getCommentId());
+    		json1.put("fromstu_id",re.getFromStuid());
+    		json1.put("tostu_id", re.getToStuid());
+    		json1.put("reply_cont", re.getReplyCont());
+    		Date d = re.getCreateTime();
+    		String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
+        	json1.put("create_time", sdf);
+        	ns.add(json1);
+    	}
     	
     	//Date d = b.getCreateTime();
-        logger.info(tag);
+        logger.info(ns);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(tag));
+        logger.info(JSON.toJSONString(ns));
         
     } 
 }

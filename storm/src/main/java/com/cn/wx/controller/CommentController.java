@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Comment;
 import com.cn.wx.pojo.News;
+import com.cn.wx.pojo.Reply;
 import com.cn.wx.service.ICommentService;
 import com.cn.wx.service.INewsService;
+import com.cn.wx.service.IReplyService;
 
 @Controller
 @RequestMapping("/comt")
@@ -33,6 +35,8 @@ public class CommentController {
 	@Resource
 	private INewsService newsService;
 	
+	@Resource
+	private IReplyService replyService;
 	
 	@RequestMapping(value={"/showComt"},method=RequestMethod.POST)
 	@ResponseBody
@@ -48,14 +52,31 @@ public class CommentController {
     		JSONObject json1 = new JSONObject();
     		json1.put("id", ct.getCommentId());
         	json1.put("stu_id",ct.getStuId());
-        	List<String> a= new ArrayList<String>();
-        	json1.put("detail_commentdetail", a);
-        	//json1.put("")
         	json1.put("detail_comment",ct.getCommentCont());
         	json1.put("news_id", ct.getNewsId());
         	Date d = ct.getCreateTime();
         	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
         	json1.put("create_time", sdf);
+        	
+        	List<Reply> repl = replyService.getReplyByComtId(ct.getCommentId());
+        	List<JSONObject> repy= new ArrayList<JSONObject>();
+        	for(int j=0;j<repl.size();j++){
+        		Reply re = repl.get(j);
+        		JSONObject json2 = new JSONObject();
+        		json2.put("detail_commentdetail_id", re.getReplyId());
+        		json2.put("comment_id", re.getCommentId());
+        		json2.put("fromstu_id",re.getFromStuid());
+        		json2.put("tostu_id", re.getToStuid());
+        		json2.put("detail_commentdetail_comment", re.getReplyCont());
+        		Date d2 = re.getCreateTime();
+        		String sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d2);
+            	json1.put("create_time", sdf2);
+            	repy.add(json2);
+        	   }
+
+        	json1.put("detail_commentdetail", repy);
+        	//json1.put("")
+        	
         	ns.add(json1);
     	   }
 		return ns;

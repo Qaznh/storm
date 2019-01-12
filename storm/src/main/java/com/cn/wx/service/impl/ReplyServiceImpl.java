@@ -1,6 +1,7 @@
 package com.cn.wx.service.impl;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -31,6 +32,8 @@ public class ReplyServiceImpl implements IReplyService{
 		return a;
 	}
 	
-	
+	public List<Reply> getReplyByComtId(int commentId){
+		return this.replyDao.selectByComtId(commentId);
+	}
 
 }

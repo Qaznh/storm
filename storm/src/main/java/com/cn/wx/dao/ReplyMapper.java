@@ -1,5 +1,7 @@
 package com.cn.wx.dao;
 
+import java.util.List;
+
 import com.cn.wx.pojo.Reply;
 
 public interface ReplyMapper {
@@ -16,4 +18,6 @@ public interface ReplyMapper {
     int updateByPrimaryKeyWithBLOBs(Reply record);
 
     int updateByPrimaryKey(Reply record);
+    
+    List<Reply> selectByComtId(Integer replyId);
 }
