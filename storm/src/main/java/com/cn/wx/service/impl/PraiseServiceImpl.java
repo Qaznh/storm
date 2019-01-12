@@ -20,12 +20,17 @@ public class PraiseServiceImpl implements IPraiseService{
 		return this.praiseDao.selectByPrimaryKey(Id);
 	}
 	
-	public int putPraise(int newsId,String stuId,Timestamp datetime){
+	public int putPraise(int newsId,String stuId,Timestamp datetime,boolean flaggood){
 		Praise pra = new Praise();
 		pra.setNewsId(newsId);
 		pra.setStuId(stuId);
 		pra.setCrawlTime(datetime);
+		pra.setFlaggood(flaggood);
 		int a = this.praiseDao.insert(pra);
 		return a;
+	}
+	
+	public int outPraise(String stuId,int newsId){
+		return this.praiseDao.deleteBySiNi(stuId, newsId);
 	}
 }

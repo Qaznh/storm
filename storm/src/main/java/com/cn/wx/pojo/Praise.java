@@ -11,6 +11,8 @@ public class Praise {
 
     private Date crawlTime;
 
+    private Boolean flaggood;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class Praise {
 
     public void setCrawlTime(Date crawlTime) {
         this.crawlTime = crawlTime;
+    }
+
+    public Boolean getFlaggood() {
+        return flaggood;
+    }
+
+    public void setFlaggood(Boolean flaggood) {
+        this.flaggood = flaggood;
     }
 }

@@ -6,9 +6,10 @@
     <result column="stu_id" property="stuId" jdbcType="CHAR" />
     <result column="news_id" property="newsId" jdbcType="INTEGER" />
     <result column="crawl_time" property="crawlTime" jdbcType="TIMESTAMP" />
+    <result column="flaggood" property="flaggood" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, stu_id, news_id, crawl_time
+    id, stu_id, news_id, crawl_time, flaggood
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -20,11 +21,15 @@
     delete from news_praise
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteBySiNi"  >
+    delete from news_praise
+    where stu_id = #{stuid} and news_id = #{newsid}
+  </delete>
   <insert id="insert" parameterType="com.cn.wx.pojo.Praise" >
     insert into news_praise (id, stu_id, news_id, 
-      crawl_time)
+      crawl_time, flaggood)
     values (#{id,jdbcType=INTEGER}, #{stuId,jdbcType=CHAR}, #{newsId,jdbcType=INTEGER}, 
-      #{crawlTime,jdbcType=TIMESTAMP})
+      #{crawlTime,jdbcType=TIMESTAMP}, #{flaggood,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.wx.pojo.Praise" >
     insert into news_praise
@@ -41,6 +46,9 @@
       <if test="crawlTime != null" >
         crawl_time,
       </if>
+      <if test="flaggood != null" >
+        flaggood,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -54,6 +62,9 @@
       </if>
       <if test="crawlTime != null" >
         #{crawlTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flaggood != null" >
+        #{flaggood,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -69,6 +80,9 @@
       <if test="crawlTime != null" >
         crawl_time = #{crawlTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="flaggood != null" >
+        flaggood = #{flaggood,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +90,8 @@
     update news_praise
     set stu_id = #{stuId,jdbcType=CHAR},
       news_id = #{newsId,jdbcType=INTEGER},
-      crawl_time = #{crawlTime,jdbcType=TIMESTAMP}
+      crawl_time = #{crawlTime,jdbcType=TIMESTAMP},
+      flaggood = #{flaggood,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

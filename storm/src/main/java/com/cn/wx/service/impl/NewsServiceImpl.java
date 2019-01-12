@@ -38,6 +38,10 @@ public class NewsServiceImpl implements INewsService{
 		return this.newsDao.updateByPrimaryKeySelective(news);
 	}
 	
+	public int addNewsPsNum(News news){
+		return this.newsDao.updateByPrimaryKeySelective(news);
+	}
+	
 	public List<News> getNewsByPage(int start){
 		return this.newsDao.selectByPageno(start);
 	}

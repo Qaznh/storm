@@ -15,6 +15,8 @@ public interface INewsService {
 	
 	public int addNewsCmNum(News news);
 	
+	public int addNewsPsNum(News news);
+	
 	public List<News> getNewsByPage(int start); 
 	
 	public List<News> getNewsByKeyword(String keyword,int start);

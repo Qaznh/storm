@@ -8,7 +8,9 @@ public interface IPraiseService {
 	
 	public Praise getpraiseById(int Id);
 	
-	public int putPraise(int newsId,String stuId,Timestamp datetime);
+	public int putPraise(int newsId,String stuId,Timestamp datetime,boolean flaggood);
+	
+	public int outPraise(String stuId,int newsId);
 	
 
 }

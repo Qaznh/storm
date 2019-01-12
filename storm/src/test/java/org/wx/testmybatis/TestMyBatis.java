@@ -27,6 +27,7 @@ import com.cn.wx.pojo.Xiaolis;
 import com.cn.wx.service.ICommentService;
 import com.cn.wx.service.IKeywordService;
 import com.cn.wx.service.INewsService;
+import com.cn.wx.service.IPraiseService;
 import com.cn.wx.service.IReplyService;
 import com.cn.wx.service.IXiaoliService;
 
@@ -45,6 +46,9 @@ public class TestMyBatis {
     
     @Resource  
     private IReplyService replyService = null;
+    
+    @Resource
+    private IPraiseService praiseService = null;
 //  @Before  
 //  public void before() {  
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
@@ -101,35 +105,33 @@ public class TestMyBatis {
     	}
     	*/
     	
-    	List<News> nws= newsService.getNewsByKeyword("ÏÐÁÄ",0);
-    	List<JSONObject> ns= new ArrayList<JSONObject>();
-    	for(int i=0;i<nws.size();i++){
-    		News b = nws.get(i);
-    		JSONObject json = new JSONObject();
-    		json.put("news_id", b.getNewsId());
-        	json.put("keyword",b.getKeyword());
-        	json.put("stu_id",b.getStuId());
-        	json.put("news_cont",b.getNewsCont());
-        	List<String> a= new ArrayList<String>();
-        	String img = b.getNewsImg();
-        	if(img!=null){
-            a.add(img);
-            }
-        	json.put("news_image", a);
-        	json.put("comment_num", b.getCommentNum());
-        	json.put("praise_num", b.getPraiseNum());
-        	json.put("browse_num", b.getBrowseNum());
-        	Date d = b.getCreateTime();
-        	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
-        	json.put("create_time", sdf);
-        	ns.add(json);
+    	
+    	int newsid = 35;
+    	String stuid = "1614080903221";
+    	boolean flaggood = true;
+    	Timestamp datetime = new Timestamp(System.currentTimeMillis());
+    	int tag = praiseService.putPraise(newsid, stuid, datetime,flaggood);
+    	if(tag==1)
+    	{
+    		News news = newsService.getNewsById(newsid);
+    		int praise_num = news.getPraiseNum();
+    		praise_num++;
+    		news.setPraiseNum(praise_num);
+    		int tag2 = newsService.addNewsPsNum(news);
+    		System.out.println(tag2);
     	}
     	
+    	/*
+    	String stuId = "1614080903221";
+    	int newsId = 35;
+    	int tag = praiseService.outPraise(stuId, newsId);
+    	*/
+    	
     	//Date d = b.getCreateTime();
-        logger.info(ns);
+        logger.info(tag);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(ns));
+        logger.info(JSON.toJSONString(tag));
         
     } 
 }

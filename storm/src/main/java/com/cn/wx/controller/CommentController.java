@@ -70,7 +70,7 @@ public class CommentController {
         		json2.put("detail_commentdetail_comment", re.getReplyCont());
         		Date d2 = re.getCreateTime();
         		String sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d2);
-            	json1.put("create_time", sdf2);
+            	json2.put("create_time", sdf2);
             	repy.add(json2);
         	   }
 
@@ -103,8 +103,8 @@ public class CommentController {
 	    	int comment_num = news.getCommentNum();
 	    	comment_num++;
 	    	news.setCommentNum(comment_num);
-	    	newsService.addNewsCmNum(news);
-			//System.out.println(tag2);
+	    	int tag2 =newsService.addNewsCmNum(news);
+			System.out.println(tag2);
 			return true;
 			}
 		else
