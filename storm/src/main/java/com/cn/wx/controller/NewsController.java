@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 
-
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.News;
 import com.cn.wx.service.IKeywordService;
@@ -49,9 +47,19 @@ public class NewsController {
 		int newsid = json.getIntValue("news_id");
 		//System.out.println(newsid);
 		News nw = newsService.getNewsById(newsid);
-		JSONArray arry = new JSONArray();
-		arry.add(nw);
-		return arry;
+		JSONObject json1 = new JSONObject();
+		json1.put("news_id", nw.getNewsId());
+    	json1.put("keyword",nw.getKeyword());
+    	json1.put("stu_id",nw.getStuId());
+    	json1.put("news_cont",nw.getNewsCont());
+    	json1.put("news_image", nw.getNewsImg());
+    	json1.put("comment_num", nw.getCommentNum());
+    	json1.put("praise_num", nw.getPraiseNum());
+    	json1.put("browse_num", nw.getBrowseNum());
+    	Date d = nw.getCreateTime();
+    	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
+    	json1.put("create_time", sdf);
+		return json1;
 	}
 	
 
@@ -149,7 +157,7 @@ public class NewsController {
     	
     	List<JSONObject> ns= new ArrayList<JSONObject>();
     	for(int i=0;i<nws.size();i++){
-    		News b = nws.get(0);
+    		News b = nws.get(i);
     		JSONObject json = new JSONObject();
     		json.put("news_id", b.getNewsId());
         	json.put("keyword",b.getKeyword());
