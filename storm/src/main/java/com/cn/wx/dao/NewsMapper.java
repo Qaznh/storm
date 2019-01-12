@@ -24,4 +24,6 @@ public interface NewsMapper {
     News selectDesc();
     
     List<News> selectByPageno(@Param("start")int start);
+    
+    List<News> selectByKeyword(@Param("keyword")String keyword,@Param("start")int start);
 }

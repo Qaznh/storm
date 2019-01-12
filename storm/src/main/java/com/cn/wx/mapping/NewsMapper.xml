@@ -44,6 +44,15 @@
     from news
     order by news_id DESC limit #{start},10
   </select>
+    <select id="selectByKeyword"  resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where keyword = #{keyword}
+    order by news_id DESC limit #{start},10
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from news
     where news_id = #{newsId,jdbcType=INTEGER}

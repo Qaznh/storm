@@ -83,6 +83,7 @@ public class TestMyBatis {
     	}
     	*/
     	
+    /*	
     	List<Reply> repl = replyService.getReplyByComtId(1);
     	List<JSONObject> ns= new ArrayList<JSONObject>();
     	for(int i=0;i<repl.size();i++){
@@ -97,6 +98,31 @@ public class TestMyBatis {
     		String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
         	json1.put("create_time", sdf);
         	ns.add(json1);
+    	}
+    	*/
+    	
+    	List<News> nws= newsService.getNewsByKeyword("опад",0);
+    	List<JSONObject> ns= new ArrayList<JSONObject>();
+    	for(int i=0;i<nws.size();i++){
+    		News b = nws.get(i);
+    		JSONObject json = new JSONObject();
+    		json.put("news_id", b.getNewsId());
+        	json.put("keyword",b.getKeyword());
+        	json.put("stu_id",b.getStuId());
+        	json.put("news_cont",b.getNewsCont());
+        	List<String> a= new ArrayList<String>();
+        	String img = b.getNewsImg();
+        	if(img!=null){
+            a.add(img);
+            }
+        	json.put("news_image", a);
+        	json.put("comment_num", b.getCommentNum());
+        	json.put("praise_num", b.getPraiseNum());
+        	json.put("browse_num", b.getBrowseNum());
+        	Date d = b.getCreateTime();
+        	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
+        	json.put("create_time", sdf);
+        	ns.add(json);
     	}
     	
     	//Date d = b.getCreateTime();

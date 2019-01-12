@@ -42,5 +42,7 @@ public class NewsServiceImpl implements INewsService{
 		return this.newsDao.selectByPageno(start);
 	}
 	
-	
+	public List<News> getNewsByKeyword(String keyword,int start){
+		return this.newsDao.selectByKeyword(keyword,start);
+	}
 }
