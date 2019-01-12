@@ -1,0 +1,31 @@
+package com.cn.wx.service.impl;
+
+import java.sql.Timestamp;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.cn.wx.dao.PraiseMapper;
+import com.cn.wx.pojo.Praise;
+import com.cn.wx.service.IPraiseService;
+
+@Service("praiseService")
+public class PraiseServiceImpl implements IPraiseService{
+
+	@Resource
+	private PraiseMapper praiseDao;
+	
+	public Praise getpraiseById(int Id){
+		return this.praiseDao.selectByPrimaryKey(Id);
+	}
+	
+	public int putPraise(int newsId,String stuId,Timestamp datetime){
+		Praise pra = new Praise();
+		pra.setNewsId(newsId);
+		pra.setStuId(stuId);
+		pra.setCrawlTime(datetime);
+		int a = this.praiseDao.insert(pra);
+		return a;
+	}
+}
