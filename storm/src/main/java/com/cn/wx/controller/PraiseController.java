@@ -32,11 +32,13 @@ public class PraiseController {
 			 throws ServletException, IOException{
 		JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
 		boolean flaggood = json1.getBooleanValue("flaggood");
+		//System.out.println(json1);
 		String stuId = json1.getString("stu_id");
 		int newsId = json1.getIntValue("news_id");
 		Timestamp datetime = new Timestamp(System.currentTimeMillis());
 		if(flaggood==true){
 		    int tag = praiseService.putPraise(newsId, stuId,datetime,flaggood);
+		   // System.out.println("true");
     	    if(tag==1){
     		   News news = newsService.getNewsById(newsId);
     		   int praise_num = news.getPraiseNum();
@@ -44,8 +46,10 @@ public class PraiseController {
     		   news.setPraiseNum(praise_num);
     		   newsService.addNewsPsNum(news);
     		//System.out.println(tag2);
-    	   }
-    	    else{
+    	    }
+    	  }
+    	    else
+    	    {
     	    	int tag2 = praiseService.outPraise(stuId, newsId);
     	    	if(tag2==1){
     				News news2 = newsService.getNewsById(newsId);
@@ -55,8 +59,7 @@ public class PraiseController {
     	    		newsService.addNewsPsNum(news2);
     			}
     	    }
-		}
-	}
+}
 	
 	
 	@RequestMapping(value={"/outPraise"})

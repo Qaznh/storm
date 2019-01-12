@@ -24,8 +24,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.News;
+import com.cn.wx.pojo.Praise;
 import com.cn.wx.service.IKeywordService;
 import com.cn.wx.service.INewsService;
+import com.cn.wx.service.IPraiseService;
 
 @Controller
 @RequestMapping("/news")
@@ -38,6 +40,9 @@ public class NewsController {
 	private INewsService newsService;
 	@Resource
 	private IKeywordService keywordService;
+	@Resource
+	private IPraiseService praiseService;
+	
 	
 	@RequestMapping(value={"/showNews"},method=RequestMethod.POST)
 	@ResponseBody
@@ -45,13 +50,22 @@ public class NewsController {
 			 throws ServletException, IOException{
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 		int newsid = json.getIntValue("news_id");
+		String stuId = json.getString("stu_id"); 
+		boolean flaggood;
 		//System.out.println(newsid);
+		Praise ps = praiseService.getprasieBySiNi(stuId, newsid);
+		if(ps==null){
+			flaggood = false;
+		}
+		else
+			{flaggood = true;}
 		News nw = newsService.getNewsById(newsid);
 		JSONObject json1 = new JSONObject();
 		json1.put("news_id", nw.getNewsId());
     	json1.put("keyword",nw.getKeyword());
     	json1.put("stu_id",nw.getStuId());
     	json1.put("news_cont",nw.getNewsCont());
+    	json1.put("flaggood", flaggood);
     	List<String> a= new ArrayList<String>();
     	String img = nw.getNewsImg();
     	if(img!=null){
@@ -158,16 +172,24 @@ public class NewsController {
     	JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
     	//System.out.println(json1.getIntValue("page"));
     	int start = (json1.getIntValue("page")*10);
+    	String stuId = json1.getString("stu_id"); 
     	List<News> nws= newsService.getNewsByPage(start);
-    	
     	List<JSONObject> ns= new ArrayList<JSONObject>();
     	for(int i=0;i<nws.size();i++){
     		News b = nws.get(i);
     		JSONObject json = new JSONObject();
+    		boolean flaggood;
+    		Praise ps = praiseService.getprasieBySiNi(stuId, b.getNewsId());
+    		if(ps==null){
+    			flaggood = false;
+    		}
+    		else
+    			{flaggood = true;}
     		json.put("news_id", b.getNewsId());
         	json.put("keyword",b.getKeyword());
         	json.put("stu_id",b.getStuId());
         	json.put("news_cont",b.getNewsCont());
+        	json.put("flaggood",flaggood);
         	List<String> a= new ArrayList<String>();
         	String img = b.getNewsImg();
         	if(img!=null){
@@ -194,15 +216,24 @@ public class NewsController {
     	//System.out.println(json1.getIntValue("page"));
     	int start = (json1.getIntValue("page")*10);
     	String keyword =json1.getString("keyword");
+    	String stuId = json1.getString("stu_id"); 
     	List<News> nws= newsService.getNewsByKeyword(keyword,start);
     	List<JSONObject> ns= new ArrayList<JSONObject>();
     	for(int i=0;i<nws.size();i++){
     		News b = nws.get(i);
     		JSONObject json = new JSONObject();
+    		boolean flaggood;
+    		Praise ps = praiseService.getprasieBySiNi(stuId, b.getNewsId());
+    		if(ps==null){
+    			flaggood = false;
+    		}
+    		else
+    			{flaggood = true;}
     		json.put("news_id", b.getNewsId());
         	json.put("keyword",b.getKeyword());
         	json.put("stu_id",b.getStuId());
         	json.put("news_cont",b.getNewsCont());
+        	json.put("flaggood",flaggood);
         	List<String> a= new ArrayList<String>();
         	String img = b.getNewsImg();
         	if(img!=null){

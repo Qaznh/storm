@@ -33,4 +33,8 @@ public class PraiseServiceImpl implements IPraiseService{
 	public int outPraise(String stuId,int newsId){
 		return this.praiseDao.deleteBySiNi(stuId, newsId);
 	}
+	
+	public Praise getprasieBySiNi(String stuId,int newsId){
+		return this.praiseDao.selectBySiNi(stuId, newsId);
+	}
 }

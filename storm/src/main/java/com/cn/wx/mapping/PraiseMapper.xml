@@ -17,6 +17,12 @@
     from news_praise
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectBySiNi" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from news_praise
+    where stu_id = #{stuid} and news_id = #{newsid}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from news_praise
     where id = #{id,jdbcType=INTEGER}

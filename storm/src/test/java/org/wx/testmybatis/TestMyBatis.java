@@ -22,6 +22,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Comment;
 import com.cn.wx.pojo.Keywords;
 import com.cn.wx.pojo.News;
+import com.cn.wx.pojo.Praise;
 import com.cn.wx.pojo.Reply;
 import com.cn.wx.pojo.Xiaolis;
 import com.cn.wx.service.ICommentService;
@@ -105,7 +106,7 @@ public class TestMyBatis {
     	}
     	*/
     	
-    	
+    	/*
     	int newsid = 35;
     	String stuid = "1614080903221";
     	boolean flaggood = true;
@@ -119,19 +120,31 @@ public class TestMyBatis {
     		news.setPraiseNum(praise_num);
     		int tag2 = newsService.addNewsPsNum(news);
     		System.out.println(tag2);
-    	}
+    	}*/
     	
-    	/*
-    	String stuId = "1614080903221";
+    	int tag2 = praiseService.outPraise("123", 53);
+    	if(tag2==1){
+			News news2 = newsService.getNewsById(53);
+    		int praise_num2 = news2.getPraiseNum();
+    		praise_num2--;
+    		news2.setPraiseNum(praise_num2);
+    		newsService.addNewsPsNum(news2);
+		}
+    	
+    /*	
+    	String stuId = "1614080903222";
     	int newsId = 35;
-    	int tag = praiseService.outPraise(stuId, newsId);
+    	Praise ps = praiseService.getprasieBySiNi(stuId, newsId);
+    	if(ps==null)
+    	{System.out.println(5);}
+    	else
+    		System.out.println(10);
     	*/
-    	
     	//Date d = b.getCreateTime();
-        logger.info(tag);
+        logger.info(tag2);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(tag));
+        logger.info(JSON.toJSONString(tag2));
         
     } 
 }

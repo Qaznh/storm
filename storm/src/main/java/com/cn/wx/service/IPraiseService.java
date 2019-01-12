@@ -12,5 +12,6 @@ public interface IPraiseService {
 	
 	public int outPraise(String stuId,int newsId);
 	
+	public Praise getprasieBySiNi(String stuId,int newsId);
 
 }

@@ -14,6 +14,8 @@ public interface PraiseMapper {
     int insertSelective(Praise record);
 
     Praise selectByPrimaryKey(Integer id);
+    
+    Praise selectBySiNi(@Param("stuid")String stuId,@Param("newsid")int newsId);
 
     int updateByPrimaryKeySelective(Praise record);
 
