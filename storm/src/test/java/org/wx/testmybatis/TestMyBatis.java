@@ -22,10 +22,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Comment;
 import com.cn.wx.pojo.Keywords;
 import com.cn.wx.pojo.News;
+import com.cn.wx.pojo.Reply;
 import com.cn.wx.pojo.Xiaolis;
 import com.cn.wx.service.ICommentService;
 import com.cn.wx.service.IKeywordService;
 import com.cn.wx.service.INewsService;
+import com.cn.wx.service.IReplyService;
 import com.cn.wx.service.IXiaoliService;
 
 
@@ -40,6 +42,9 @@ public class TestMyBatis {
     
     @Resource  
     private ICommentService commentService = null;
+    
+    @Resource  
+    private IReplyService replyService = null;
 //  @Before  
 //  public void before() {  
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
@@ -49,13 +54,7 @@ public class TestMyBatis {
     @Test  
     public void test1() {  
         
-    	/*int newsId = 64;
-    	News news=newsService.getNewsById(newsId);
-    	int comment_num = news.getCommentNum();
-    	comment_num++;
-    	news.setCommentNum(comment_num);
-    	int tag =newsService.addNewsCmNum(news);
-    	*/
+    /*
         List<News> nws= newsService.getNewsByPage(0);
     	
     	List<JSONObject> ns= new ArrayList<JSONObject>();
@@ -82,12 +81,20 @@ public class TestMyBatis {
         	json.put("create_time", sdf);
         	ns.add(json);
     	}
+    	*/
+    	
+    	int commentId = 18;
+    	String fromStuId = "1614080903221";
+    	String toStuId = "1614080903221";
+    	String replyCont = "abc";
+    	Timestamp datetime = new Timestamp(System.currentTimeMillis());
+    	int tag = replyService.putReply(commentId, fromStuId, toStuId, replyCont, datetime);
     	
     	//Date d = b.getCreateTime();
-        logger.info(ns);
+        logger.info(tag);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(ns));
+        logger.info(JSON.toJSONString(tag));
         
     } 
 }

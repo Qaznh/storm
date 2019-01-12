@@ -1721,3 +1721,98 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 [INFO] [2019-01-12 14:37:47][org.wx.testmybatis.TestMyBatis][{"browse_num":0,"comment_num":2,"create_time":"2019-01-12 13:21:17","keyword":"闲聊","news_cont":"发过的刚发的放大","news_id":35,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}, {"browse_num":0,"comment_num":1,"create_time":"2019-01-12 13:17:26","keyword":"闲聊","news_cont":"发多少阿凡达撒","news_id":34,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}, {"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:22","keyword":"闲聊","news_cont":"黑寡妇黑寡妇反攻倒算","news_id":33,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}, {"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:18","keyword":"闲聊","news_cont":"黑寡妇回复的很反感dd","news_id":32,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}, {"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:14","keyword":"闲聊","news_cont":"h'g黑寡妇黑寡妇黑寡妇","news_id":31,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}, {"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:11","keyword":"闲聊","news_cont":"刚发的刚发的刚发的","news_id":30,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}, {"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:08","keyword":"闲聊","news_cont":"都怪放大g刚发的放大","news_id":29,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}, {"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:04","keyword":"闲聊","news_cont":"对象风神股份对撒的","news_id":28,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}, {"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:16:39","keyword":"闲聊","news_cont":"刚发的刚发的g'f'dgfd","news_id":27,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}, {"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:16:35","keyword":"闲聊","news_cont":"大萨达撒对撒","news_id":26,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}]
 [INFO] [2019-01-12 14:37:47][org.wx.testmybatis.TestMyBatis][{"browse_num":0,"comment_num":2,"create_time":"2019-01-12 13:21:17","keyword":"闲聊","news_cont":"发过的刚发的放大","news_id":35,"news_image":[],"praise_num":0,"stu_id":"1614080903221"},{"browse_num":0,"comment_num":1,"create_time":"2019-01-12 13:17:26","keyword":"闲聊","news_cont":"发多少阿凡达撒","news_id":34,"news_image":[],"praise_num":0,"stu_id":"1614080903221"},{"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:22","keyword":"闲聊","news_cont":"黑寡妇黑寡妇反攻倒算","news_id":33,"news_image":[],"praise_num":0,"stu_id":"1614080903221"},{"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:18","keyword":"闲聊","news_cont":"黑寡妇回复的很反感dd","news_id":32,"news_image":[],"praise_num":0,"stu_id":"1614080903221"},{"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:14","keyword":"闲聊","news_cont":"h'g黑寡妇黑寡妇黑寡妇","news_id":31,"news_image":[],"praise_num":0,"stu_id":"1614080903221"},{"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:11","keyword":"闲聊","news_cont":"刚发的刚发的刚发的","news_id":30,"news_image":[],"praise_num":0,"stu_id":"1614080903221"},{"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:08","keyword":"闲聊","news_cont":"都怪放大g刚发的放大","news_id":29,"news_image":[],"praise_num":0,"stu_id":"1614080903221"},{"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:17:04","keyword":"闲聊","news_cont":"对象风神股份对撒的","news_id":28,"news_image":[],"praise_num":0,"stu_id":"1614080903221"},{"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:16:39","keyword":"闲聊","news_cont":"刚发的刚发的g'f'dgfd","news_id":27,"news_image":[],"praise_num":0,"stu_id":"1614080903221"},{"browse_num":0,"comment_num":0,"create_time":"2019-01-12 13:16:35","keyword":"闲聊","news_cont":"大萨达撒对撒","news_id":26,"news_image":[],"praise_num":0,"stu_id":"1614080903221"}]
 [INFO] [2019-01-12 14:37:47][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2c9f9fb0: startup date [Sat Jan 12 14:37:46 CST 2019]; root of context hierarchy
+[INFO] [2019-01-12 15:16:20][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2019-01-12 15:16:20][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2c9f9fb0: startup date [Sat Jan 12 15:16:20 CST 2019]; root of context hierarchy
+[INFO] [2019-01-12 15:16:20][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2019-01-12 15:16:20][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR] [2019-01-12 15:16:21][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@759d26fb] to prepare test instance [org.wx.testmybatis.TestMyBatis@3c73951]
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.wx.testmybatis.TestMyBatis': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanNotOfRequiredTypeException: Bean named 'replyService' must be of type [com.cn.wx.service.IReplyService], but was actually of type [com.cn.wx.service.impl.ReplyServiceImpl]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:307)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1185)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireBeanProperties(AbstractAutowireCapableBeanFactory.java:384)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:110)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:212)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: org.springframework.beans.factory.BeanNotOfRequiredTypeException: Bean named 'replyService' must be of type [com.cn.wx.service.IReplyService], but was actually of type [com.cn.wx.service.impl.ReplyServiceImpl]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:376)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:445)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:419)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:155)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:304)
+	... 26 more
+[INFO] [2019-01-12 15:16:21][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2c9f9fb0: startup date [Sat Jan 12 15:16:20 CST 2019]; root of context hierarchy
+[INFO] [2019-01-12 15:18:22][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2019-01-12 15:18:22][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2c9f9fb0: startup date [Sat Jan 12 15:18:22 CST 2019]; root of context hierarchy
+[INFO] [2019-01-12 15:18:23][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2019-01-12 15:18:23][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR] [2019-01-12 15:18:23][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@759d26fb] to prepare test instance [org.wx.testmybatis.TestMyBatis@3c73951]
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.wx.testmybatis.TestMyBatis': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanNotOfRequiredTypeException: Bean named 'replyService' must be of type [com.cn.wx.service.IReplyService], but was actually of type [com.cn.wx.service.impl.ReplyServiceImpl]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:307)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1185)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireBeanProperties(AbstractAutowireCapableBeanFactory.java:384)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:110)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:212)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: org.springframework.beans.factory.BeanNotOfRequiredTypeException: Bean named 'replyService' must be of type [com.cn.wx.service.IReplyService], but was actually of type [com.cn.wx.service.impl.ReplyServiceImpl]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:376)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:445)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:419)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:155)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessPropertyValues(CommonAnnotationBeanPostProcessor.java:304)
+	... 26 more
+[INFO] [2019-01-12 15:18:23][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2c9f9fb0: startup date [Sat Jan 12 15:18:22 CST 2019]; root of context hierarchy
+[INFO] [2019-01-12 15:33:27][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2019-01-12 15:33:27][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2c9f9fb0: startup date [Sat Jan 12 15:33:27 CST 2019]; root of context hierarchy
+[INFO] [2019-01-12 15:33:27][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2019-01-12 15:33:27][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2019-01-12 15:33:28][org.wx.testmybatis.TestMyBatis]1
+[INFO] [2019-01-12 15:33:28][org.wx.testmybatis.TestMyBatis]1
+[INFO] [2019-01-12 15:33:28][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2c9f9fb0: startup date [Sat Jan 12 15:33:27 CST 2019]; root of context hierarchy
