@@ -45,14 +45,19 @@ public class NewsController {
 			 throws ServletException, IOException{
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 		int newsid = json.getIntValue("news_id");
-		//System.out.println(newsid);
+		System.out.println(newsid);
 		News nw = newsService.getNewsById(newsid);
 		JSONObject json1 = new JSONObject();
 		json1.put("news_id", nw.getNewsId());
     	json1.put("keyword",nw.getKeyword());
     	json1.put("stu_id",nw.getStuId());
     	json1.put("news_cont",nw.getNewsCont());
-    	json1.put("news_image", nw.getNewsImg());
+    	List<String> a= new ArrayList<String>();
+    	String img = nw.getNewsImg();
+    	if(img!=null){
+    		a.add(img);
+    	}
+    	json1.put("news_image", a);
     	json1.put("comment_num", nw.getCommentNum());
     	json1.put("praise_num", nw.getPraiseNum());
     	json1.put("browse_num", nw.getBrowseNum());
@@ -151,7 +156,7 @@ public class NewsController {
     public Object showNewsPage(HttpServletRequest request,HttpServletResponse response)
 			 throws ServletException, IOException{
     	JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
-    	System.out.println(json1.getIntValue("page"));
+    	//System.out.println(json1.getIntValue("page"));
     	int start = (json1.getIntValue("page")*10);
     	List<News> nws= newsService.getNewsByPage(start);
     	
@@ -163,7 +168,12 @@ public class NewsController {
         	json.put("keyword",b.getKeyword());
         	json.put("stu_id",b.getStuId());
         	json.put("news_cont",b.getNewsCont());
-        	json.put("news_image", b.getNewsImg());
+        	List<String> a= new ArrayList<String>();
+        	String img = b.getNewsImg();
+        	if(img!=null){
+            a.add(img);
+            }
+        	json.put("news_image", a);
         	json.put("comment_num", b.getCommentNum());
         	json.put("praise_num", b.getPraiseNum());
         	json.put("browse_num", b.getBrowseNum());

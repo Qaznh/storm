@@ -56,16 +56,24 @@ public class TestMyBatis {
     	news.setCommentNum(comment_num);
     	int tag =newsService.addNewsCmNum(news);
     	*/
-    	List<News> news = newsService.getNewsByPage(1);
+        List<News> nws= newsService.getNewsByPage(0);
+    	
     	List<JSONObject> ns= new ArrayList<JSONObject>();
-    	for(int i=0;i<news.size();i++){
-    		News b = news.get(0);
+    	for(int i=0;i<nws.size();i++){
+    		News b = nws.get(i);
     		JSONObject json = new JSONObject();
     		json.put("news_id", b.getNewsId());
         	json.put("keyword",b.getKeyword());
         	json.put("stu_id",b.getStuId());
         	json.put("news_cont",b.getNewsCont());
-        	json.put("news_image", b.getNewsImg());
+        	List<String> a= new ArrayList<String>();
+        	String img = b.getNewsImg();
+        	System.out.println(b.getNewsImg());
+        	if(img!=null){
+                a.add(img);
+            }
+            System.out.println(a);
+        	json.put("news_image", a);
         	json.put("comment_num", b.getCommentNum());
         	json.put("praise_num", b.getPraiseNum());
         	json.put("browse_num", b.getBrowseNum());

@@ -30,7 +30,7 @@
     ,
     <include refid="Blob_Column_List" />
     from news_comment
-    where #{news_id}
+    where news_id = #{news_id}
     order by news_id DESC limit #{start},5
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
