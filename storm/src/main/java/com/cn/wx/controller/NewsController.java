@@ -113,7 +113,7 @@ public class NewsController {
                    //String realPath = "Q:\\Users\\Aqzh\\git\\storm\\src\\main\\webapp\\Image\\news_image\\";
                    // 自定义的文件名称
                    String trueFileName = id +"_"+ UUID.randomUUID().toString()+"."+type.toLowerCase();
-                   System.out.println(trueFileName);
+                  // System.out.println(trueFileName);
                    //System.out.println(trueFileName);
                    // 设置存放图片文件的路径
                    path = realPath + trueFileName; 
@@ -135,11 +135,11 @@ public class NewsController {
     	request.setCharacterEncoding("UTF-8");
     	JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);   	
     	String id = json1.getString("id");
-    	System.out.println(id);
+    	//System.out.println(id);
     	String keyword = json1.getString("keyword");
-    	System.out.println(keyword);
+    	//System.out.println(keyword);
         String news_cont = json1.getString("news_cont");
-        System.out.println(news_cont);
+        //System.out.println(news_cont);
         Timestamp datetime = new Timestamp(System.currentTimeMillis());
         
         int tag = newsService.putNews(id, keyword, news_imgurl, news_cont, datetime);

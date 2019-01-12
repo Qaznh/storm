@@ -20,11 +20,11 @@ public class GoodsController {
     @RequestMapping("/upload")
 	 public boolean upload(HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) 
 			 throws IOException {
-        System.out.println("Ö´ÐÐupload");
+       // System.out.println("Ö´ÐÐupload");
         request.setCharacterEncoding("UTF-8");
      
-        String id = request.getParameter("id");
-        System.out.println(id);
+        //String id = request.getParameter("id");
+        //System.out.println(id);
         if(!file.isEmpty()) {
          
             String fileName = file.getOriginalFilename();
