@@ -25,9 +25,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.News;
 import com.cn.wx.pojo.Praise;
+import com.cn.wx.pojo.Student;
 import com.cn.wx.service.IKeywordService;
 import com.cn.wx.service.INewsService;
 import com.cn.wx.service.IPraiseService;
+import com.cn.wx.service.IStudentService;
 
 @Controller
 @RequestMapping("/news")
@@ -42,6 +44,9 @@ public class NewsController {
 	private IKeywordService keywordService;
 	@Resource
 	private IPraiseService praiseService;
+	@Resource  
+    private IStudentService studentService;
+	
 	
 	
 	@RequestMapping(value={"/showNews"},method=RequestMethod.POST)
@@ -61,6 +66,8 @@ public class NewsController {
 			{flaggood = true;}
 		News nw = newsService.getNewsById(newsid);
 		JSONObject json1 = new JSONObject();
+		Student stu = studentService.getStudentById(nw.getStuId());
+		json1.put("stu_name", stu.getStuName());
 		json1.put("news_id", nw.getNewsId());
     	json1.put("keyword",nw.getKeyword());
     	json1.put("stu_id",nw.getStuId());
@@ -124,6 +131,7 @@ public class NewsController {
                if ("GIF".equals(type.toUpperCase())||"PNG".equals(type.toUpperCase())||"JPG".equals(type.toUpperCase())) {
                    // 项目在容器中实际发布运行的根路径
             	   String realPath = request.getSession().getServletContext().getRealPath("")+"Image\\news_image\\";
+            	   //System.out.println(realPath);
                    //String realPath = "Q:\\Users\\Aqzh\\git\\storm\\src\\main\\webapp\\Image\\news_image\\";
                    // 自定义的文件名称
                    String trueFileName = id +"_"+ UUID.randomUUID().toString()+"."+type.toLowerCase();
@@ -157,7 +165,8 @@ public class NewsController {
         Timestamp datetime = new Timestamp(System.currentTimeMillis());
         
         int tag = newsService.putNews(id, keyword, news_imgurl, news_cont, datetime);
-    
+        news_imgurl=null;
+        
         if(tag==1)
     	  return true;
         else
@@ -178,6 +187,7 @@ public class NewsController {
     	for(int i=0;i<nws.size();i++){
     		News b = nws.get(i);
     		JSONObject json = new JSONObject();
+    		Student stu = studentService.getStudentById(b.getStuId());
     		boolean flaggood;
     		Praise ps = praiseService.getprasieBySiNi(stuId, b.getNewsId());
     		if(ps==null){
@@ -185,6 +195,7 @@ public class NewsController {
     		}
     		else
     			{flaggood = true;}
+    		json.put("stu_name", stu.getStuName());
     		json.put("news_id", b.getNewsId());
         	json.put("keyword",b.getKeyword());
         	json.put("stu_id",b.getStuId());
@@ -222,6 +233,7 @@ public class NewsController {
     	for(int i=0;i<nws.size();i++){
     		News b = nws.get(i);
     		JSONObject json = new JSONObject();
+    		Student stu = studentService.getStudentById(b.getStuId());
     		boolean flaggood;
     		Praise ps = praiseService.getprasieBySiNi(stuId, b.getNewsId());
     		if(ps==null){
@@ -229,6 +241,7 @@ public class NewsController {
     		}
     		else
     			{flaggood = true;}
+    		json.put("stu_name", stu.getStuName());
     		json.put("news_id", b.getNewsId());
         	json.put("keyword",b.getKeyword());
         	json.put("stu_id",b.getStuId());

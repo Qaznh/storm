@@ -16,5 +16,9 @@ public class StudentServiceImpl implements IStudentService {
 		// TODO Auto-generated method stub  
 	       return this.studentDao.selectByPrimaryKey(studentId);
 	}
+	
+	public int putIconUrl(Student stu){
+		return this.studentDao.updateByPrimaryKeySelective(stu);
+	}
 
 }

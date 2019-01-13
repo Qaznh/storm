@@ -1,9 +1,16 @@
 package com.cn.wx.controller;
 
+import javax.annotation.Resource;
+
 import com.alibaba.fastjson.JSONObject;
+import com.cn.wx.pojo.Student;
+import com.cn.wx.service.IStudentService;
 
 public class GetData {
 
+	@Resource  
+    private static IStudentService studentService;
+	
 	public static char[] a = new char[13];
 	public  static int getYear(String id){
 		for(int i=0;i<id.length();i++) 
@@ -158,5 +165,11 @@ public class GetData {
 		JSONObject json = new JSONObject();
 		json.put("name", kws);
 		return json;
+	}
+	
+	public static String getStunameByid(String id){
+		Student stu = studentService.getStudentById(id);
+		String stu_name = stu.getStuName();
+		return stu_name;
 	}
 }

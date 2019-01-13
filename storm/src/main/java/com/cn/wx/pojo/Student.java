@@ -5,6 +5,10 @@ public class Student {
 
     private String password;
 
+    private String stuName;
+
+    private String iconUrl;
+
     public String getId() {
         return id;
     }
@@ -19,5 +23,21 @@ public class Student {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getStuName() {
+        return stuName;
+    }
+
+    public void setStuName(String stuName) {
+        this.stuName = stuName == null ? null : stuName.trim();
+    }
+
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl == null ? null : iconUrl.trim();
     }
 }

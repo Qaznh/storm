@@ -21,9 +21,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Comment;
 import com.cn.wx.pojo.News;
 import com.cn.wx.pojo.Reply;
+import com.cn.wx.pojo.Student;
 import com.cn.wx.service.ICommentService;
 import com.cn.wx.service.INewsService;
 import com.cn.wx.service.IReplyService;
+import com.cn.wx.service.IStudentService;
 
 @Controller
 @RequestMapping("/comt")
@@ -37,6 +39,8 @@ public class CommentController {
 	
 	@Resource
 	private IReplyService replyService;
+	@Resource  
+    private IStudentService studentService;
 	
 	@RequestMapping(value={"/showComt"},method=RequestMethod.POST)
 	@ResponseBody
@@ -50,10 +54,13 @@ public class CommentController {
     	for(int i=0;i<comt.size();i++){
     		Comment ct = comt.get(i);
     		JSONObject json1 = new JSONObject();
+    		Student stu = studentService.getStudentById(ct.getStuId());
+    		json1.put("stu_name", stu.getStuName());
     		json1.put("id", ct.getCommentId());
         	json1.put("stu_id",ct.getStuId());
         	json1.put("detail_comment",ct.getCommentCont());
         	json1.put("news_id", ct.getNewsId());
+        	json1.put("flag", false);
         	Date d = ct.getCreateTime();
         	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
         	json1.put("create_time", sdf);
@@ -63,6 +70,10 @@ public class CommentController {
         	for(int j=0;j<repl.size();j++){
         		Reply re = repl.get(j);
         		JSONObject json2 = new JSONObject();
+        		Student stu1 = studentService.getStudentById(re.getFromStuid());
+        		Student stu2 = studentService.getStudentById(re.getToStuid());
+        		json2.put("fromstu_name", stu1.getStuName());
+        		json2.put("tostu_name", stu2.getStuName());
         		json2.put("detail_commentdetail_id", re.getReplyId());
         		json2.put("comment_id", re.getCommentId());
         		json2.put("fromstu_id",re.getFromStuid());
