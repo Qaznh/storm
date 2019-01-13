@@ -56,6 +56,7 @@ public class CommentController {
     		JSONObject json1 = new JSONObject();
     		Student stu = studentService.getStudentById(ct.getStuId());
     		json1.put("stu_name", stu.getStuName());
+    		json1.put("icon_url", stu.getIconUrl());
     		json1.put("id", ct.getCommentId());
         	json1.put("stu_id",ct.getStuId());
         	json1.put("detail_comment",ct.getCommentCont());

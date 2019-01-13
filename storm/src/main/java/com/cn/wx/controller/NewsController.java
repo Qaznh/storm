@@ -68,6 +68,7 @@ public class NewsController {
 		JSONObject json1 = new JSONObject();
 		Student stu = studentService.getStudentById(nw.getStuId());
 		json1.put("stu_name", stu.getStuName());
+		json1.put("icon_url",stu.getIconUrl());
 		json1.put("news_id", nw.getNewsId());
     	json1.put("keyword",nw.getKeyword());
     	json1.put("stu_id",nw.getStuId());
@@ -196,6 +197,7 @@ public class NewsController {
     		else
     			{flaggood = true;}
     		json.put("stu_name", stu.getStuName());
+    		json.put("icon_url",stu.getIconUrl());
     		json.put("news_id", b.getNewsId());
         	json.put("keyword",b.getKeyword());
         	json.put("stu_id",b.getStuId());
@@ -242,6 +244,7 @@ public class NewsController {
     		else
     			{flaggood = true;}
     		json.put("stu_name", stu.getStuName());
+    		json.put("icon_url", stu.getIconUrl());
     		json.put("news_id", b.getNewsId());
         	json.put("keyword",b.getKeyword());
         	json.put("stu_id",b.getStuId());

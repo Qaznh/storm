@@ -57,40 +57,29 @@ public class StudentController {
 	
 	@RequestMapping(value={"/uploadIcon"})
 	 @ResponseBody
-	    public void uploadIcon(HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) 
-				 throws IOException {
-		request.setCharacterEncoding("UTF-8");
-	    String id = request.getParameter("stu_id");
-	    if(!file.isEmpty()) {
-	        
-	           String fileName = file.getOriginalFilename();
-	           String path = null;
-	           String type = null;
-	           type = fileName.indexOf(".") != -1 ? fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()) : null;
-	           
-	           if (type != null) {
-	               if ("GIF".equals(type.toUpperCase())||"PNG".equals(type.toUpperCase())||"JPG".equals(type.toUpperCase())) {
-	                   // 项目在容器中实际发布运行的根路径
-	            	   String realPath = request.getSession().getServletContext().getRealPath("")+"Image\\icon_image\\";
-	                   //String realPath = "Q:\\Users\\Aqzh\\git\\storm\\src\\main\\webapp\\Image\\news_image\\";
-	                   // 自定义的文件名称
-	                   String trueFileName = id +"_"+ UUID.randomUUID().toString()+"."+type.toLowerCase();
-	                  // System.out.println(trueFileName);
-	                   //System.out.println(trueFileName);
-	                   // 设置存放图片文件的路径
-	                   path = realPath + trueFileName; 
-	                   file.transferTo(new File(path));
-	                   String serverPath1 = "http://10.101.112.105:8080/storm/Image/icon_image/";
-	                   news_imgurl = serverPath1 + trueFileName;
-	                   
-	                   Student stu = studentService.getStudentById(id);
-	                   stu.setIconUrl(news_imgurl);
-	                   studentService.putIconUrl(stu);
-	                  }
-	               }
-	           }
+	    public Object uploadIcon(HttpServletRequest request,HttpServletResponse response ) 
+	    		throws ServletException, IOException{
+		         request.setCharacterEncoding("UTF-8");
+		         JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+	             String id = json.getString("stu_id");
+	             System.out.println(id);
+	             String icon_url = json.getString("icon_url");
+	             System.out.println(icon_url);
+	             Student stu = studentService.getStudentById(id);
+	             stu.setIconUrl(icon_url);
+	             studentService.putIconUrl(stu);
+	             return true;
 	        }
 	
+	@RequestMapping(value={"/showStu"})
+    @ResponseBody
+    public Object showStu(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+		String stuid = json.getString("stu_id");
+		Student st = studentService.getStudentById(stuid);
+		return st;
+	}
 	
 }
 
