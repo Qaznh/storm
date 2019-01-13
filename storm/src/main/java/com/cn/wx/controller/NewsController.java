@@ -65,6 +65,10 @@ public class NewsController {
 		else
 			{flaggood = true;}
 		News nw = newsService.getNewsById(newsid);
+		 int brnu =nw.getBrowseNum();
+		 brnu++;
+		 nw.setBrowseNum(brnu);
+		newsService.addNewsBrNum(nw);
 		JSONObject json1 = new JSONObject();
 		Student stu = studentService.getStudentById(nw.getStuId());
 		json1.put("stu_name", stu.getStuName());
@@ -183,6 +187,7 @@ public class NewsController {
     	//System.out.println(json1.getIntValue("page"));
     	int start = (json1.getIntValue("page")*10);
     	String stuId = json1.getString("stu_id"); 
+    	//System.out.println(stuId);
     	List<News> nws= newsService.getNewsByPage(start);
     	List<JSONObject> ns= new ArrayList<JSONObject>();
     	for(int i=0;i<nws.size();i++){

@@ -115,8 +115,8 @@ public class CommentController {
 	    	int comment_num = news.getCommentNum();
 	    	comment_num++;
 	    	news.setCommentNum(comment_num);
-	    	int tag2 =newsService.addNewsCmNum(news);
-			System.out.println(tag2);
+	    	newsService.addNewsCmNum(news);
+			//System.out.println(tag2);
 			return true;
 			}
 		else

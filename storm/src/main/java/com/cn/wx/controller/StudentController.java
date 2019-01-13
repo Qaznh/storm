@@ -1,8 +1,6 @@
 package com.cn.wx.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -12,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Student;
@@ -62,9 +58,9 @@ public class StudentController {
 		         request.setCharacterEncoding("UTF-8");
 		         JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 	             String id = json.getString("stu_id");
-	             System.out.println(id);
+	             //System.out.println(id);
 	             String icon_url = json.getString("icon_url");
-	             System.out.println(icon_url);
+	             //System.out.println(icon_url);
 	             Student stu = studentService.getStudentById(id);
 	             stu.setIconUrl(icon_url);
 	             studentService.putIconUrl(stu);
