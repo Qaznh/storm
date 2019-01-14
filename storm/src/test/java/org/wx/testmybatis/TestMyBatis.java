@@ -32,6 +32,7 @@ import com.cn.wx.service.INewsService;
 import com.cn.wx.service.IPraiseService;
 import com.cn.wx.service.IReplyService;
 import com.cn.wx.service.IStudentService;
+import com.cn.wx.service.IUserfeedbackService;
 import com.cn.wx.service.IXiaoliService;
 
 
@@ -55,6 +56,9 @@ public class TestMyBatis {
     
     @Resource  
     private IStudentService studentService = null;  
+    
+    @Resource  
+    private IUserfeedbackService userfeedbackService = null; 
 //  @Before  
 //  public void before() {  
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
@@ -137,12 +141,12 @@ public class TestMyBatis {
     		newsService.addNewsPsNum(news2);
 		}*/
     	
-    	
+    	/*
     	String id="1614080903221";
     	Student stu = studentService.getStudentById(id);
     	String iconUrl = "http://10.101.112.105:8080/storm/Image/news_image/1614080903221_18f3b6fd-d6b6-43bc-98aa-62f773aca119.jpg";
     	stu.setIconUrl(iconUrl);
-    	int tag = studentService.putIconUrl(stu);	
+    	int tag = studentService.putIconUrl(stu);*/	
     /*	
     	String stuId = "1614080903222";
     	int newsId = 35;
@@ -152,11 +156,17 @@ public class TestMyBatis {
     	else
     		System.out.println(10);
     	*/
+    	String stuid = "1614080903221";
+    	String keyword = "显示问题";
+    	String comment = "abc";
+    	Timestamp datetime = new Timestamp(System.currentTimeMillis());
+    	int tag = userfeedbackService.putUserfeedback(stuid, keyword, comment, datetime);
+    	
     	//Date d = b.getCreateTime();
         logger.info(tag);
         // System.out.println(user.getUserName());  
         // logger.info("值："+user.getUserName());  
-        logger.info(JSON.toJSONString(stu));
+        logger.info(JSON.toJSONString(tag));
         
     } 
 }

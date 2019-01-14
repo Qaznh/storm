@@ -1948,3 +1948,10 @@ Caused by: org.springframework.beans.factory.BeanNotOfRequiredTypeException: Bea
 [INFO] [2019-01-13 20:26:45][org.wx.testmybatis.TestMyBatis]1
 [INFO] [2019-01-13 20:26:46][org.wx.testmybatis.TestMyBatis]{"iconUrl":"http://10.101.112.105:8080/storm/Image/news_image/1614080903221_18f3b6fd-d6b6-43bc-98aa-62f773aca119.jpg","id":"1614080903221","password":"e10adc3949ba59abbe56e057f20f883e","stuName":"Œ‚‘Û‹ı"}
 [INFO] [2019-01-13 20:26:46][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2c9f9fb0: startup date [Sun Jan 13 20:26:45 CST 2019]; root of context hierarchy
+[INFO] [2019-01-14 15:00:27][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2019-01-14 15:00:27][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2c9f9fb0: startup date [Mon Jan 14 15:00:27 CST 2019]; root of context hierarchy
+[INFO] [2019-01-14 15:00:27][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2019-01-14 15:00:27][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2019-01-14 15:00:28][org.wx.testmybatis.TestMyBatis]1
+[INFO] [2019-01-14 15:00:28][org.wx.testmybatis.TestMyBatis]1
+[INFO] [2019-01-14 15:00:28][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2c9f9fb0: startup date [Mon Jan 14 15:00:27 CST 2019]; root of context hierarchy
