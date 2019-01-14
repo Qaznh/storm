@@ -36,7 +36,8 @@ import com.cn.wx.service.IStudentService;
 public class NewsController {
 	
 	static String news_imgurl=null;
-	
+	static String news_imgurl1=null;
+	static String news_imgurl2=null;
 	
 	@Resource
 	private INewsService newsService;
@@ -80,8 +81,16 @@ public class NewsController {
     	json1.put("flaggood", flaggood);
     	List<String> a= new ArrayList<String>();
     	String img = nw.getNewsImg();
+    	String img1 = nw.getNewsImg1();
+    	String img2 = nw.getNewsImg2();
     	if(img!=null){
-    		a.add(img);
+        a.add(img);
+        }
+    	if(img1!=null){
+    	 a.add(img1);
+    	}
+    	if(img2!=null){
+    	 a.add(img2);
     	}
     	json1.put("news_image", a);
     	json1.put("comment_num", nw.getCommentNum());
@@ -123,6 +132,7 @@ public class NewsController {
        //System.out.println("Ö´ÐÐupload");
        request.setCharacterEncoding("UTF-8");
        String id = request.getParameter("id");
+       int count = Integer.parseInt(request.getParameter("count")); 
        if(!file.isEmpty()) {
         
            String fileName = file.getOriginalFilename();
@@ -146,8 +156,12 @@ public class NewsController {
                    path = realPath + trueFileName; 
                    file.transferTo(new File(path));
                    String serverPath1 = "http://10.101.112.105:8080/storm/Image/news_image/";
-                   news_imgurl = serverPath1 + trueFileName;
-                   
+                   switch(count)
+                   {
+                   case 0:news_imgurl = serverPath1 + trueFileName; break;
+                   case 1:news_imgurl1 = serverPath1 + trueFileName;break;
+                   case 2:news_imgurl2 = serverPath1 + trueFileName;break;
+                   }
                }
            }
          }
@@ -169,9 +183,10 @@ public class NewsController {
         //System.out.println(news_cont);
         Timestamp datetime = new Timestamp(System.currentTimeMillis());
         
-        int tag = newsService.putNews(id, keyword, news_imgurl, news_cont, datetime);
+        int tag = newsService.putNews(id, keyword, news_imgurl, news_imgurl1, news_imgurl2, news_cont, datetime);
         news_imgurl=null;
-        
+        news_imgurl1=null;
+        news_imgurl2=null;
         if(tag==1)
     	  return true;
         else
@@ -210,9 +225,17 @@ public class NewsController {
         	json.put("flaggood",flaggood);
         	List<String> a= new ArrayList<String>();
         	String img = b.getNewsImg();
+        	String img1 = b.getNewsImg1();
+        	String img2 = b.getNewsImg2();
         	if(img!=null){
             a.add(img);
             }
+        	if(img1!=null){
+        	 a.add(img1);
+        	}
+        	if(img2!=null){
+        	 a.add(img2);
+        	}
         	json.put("news_image", a);
         	json.put("comment_num", b.getCommentNum());
         	json.put("praise_num", b.getPraiseNum());
@@ -257,9 +280,17 @@ public class NewsController {
         	json.put("flaggood",flaggood);
         	List<String> a= new ArrayList<String>();
         	String img = b.getNewsImg();
+        	String img1 = b.getNewsImg1();
+        	String img2 = b.getNewsImg2();
         	if(img!=null){
             a.add(img);
             }
+        	if(img1!=null){
+        	 a.add(img1);
+        	}
+        	if(img2!=null){
+        	 a.add(img2);
+        	}
         	json.put("news_image", a);
         	json.put("comment_num", b.getCommentNum());
         	json.put("praise_num", b.getPraiseNum());

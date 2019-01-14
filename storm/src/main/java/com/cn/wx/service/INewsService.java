@@ -9,7 +9,7 @@ public interface INewsService {
 	
 	public News getNewsById(int newsId);
 
-	public int putNews(String stu_id,String keyword,String news_img,String news_cont,Timestamp datetime);
+	public int putNews(String stu_id,String keyword,String news_img,String news_img1,String news_img2,String news_cont,Timestamp datetime);
 	
 	public News getNewsDesc();
 	

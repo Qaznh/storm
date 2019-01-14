@@ -10,12 +10,15 @@
     <result column="praise_num" property="praiseNum" jdbcType="INTEGER" />
     <result column="browse_num" property="browseNum" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="news_img1" property="newsImg1" jdbcType="VARCHAR" />
+    <result column="news_img2" property="newsImg2" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.cn.wx.pojo.News" extends="BaseResultMap" >
     <result column="news_cont" property="newsCont" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    news_id, keyword, stu_id, news_img, comment_num, praise_num, browse_num, create_time
+    news_id, keyword, stu_id, news_img, comment_num, praise_num, browse_num, create_time, 
+    news_img1, news_img2
   </sql>
   <sql id="Blob_Column_List" >
     news_cont
@@ -36,7 +39,7 @@
     from news
     order by news_id DESC limit 1
   </select>
-  <select id="selectByPageno" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+   <select id="selectByPageno" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select
     <include refid="Base_Column_List" />
     ,
@@ -60,12 +63,12 @@
   <insert id="insert" parameterType="com.cn.wx.pojo.News" >
     insert into news (news_id, keyword, stu_id, 
       news_img, comment_num, praise_num, 
-      browse_num, create_time, news_cont
-      )
+      browse_num, create_time, news_img1, 
+      news_img2, news_cont)
     values (#{newsId,jdbcType=INTEGER}, #{keyword,jdbcType=VARCHAR}, #{stuId,jdbcType=CHAR}, 
       #{newsImg,jdbcType=VARCHAR}, #{commentNum,jdbcType=INTEGER}, #{praiseNum,jdbcType=INTEGER}, 
-      #{browseNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{newsCont,jdbcType=LONGVARCHAR}
-      )
+      #{browseNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{newsImg1,jdbcType=VARCHAR}, 
+      #{newsImg2,jdbcType=VARCHAR}, #{newsCont,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.wx.pojo.News" >
     insert into news
@@ -93,6 +96,12 @@
       </if>
       <if test="createTime != null" >
         create_time,
+      </if>
+      <if test="newsImg1 != null" >
+        news_img1,
+      </if>
+      <if test="newsImg2 != null" >
+        news_img2,
       </if>
       <if test="newsCont != null" >
         news_cont,
@@ -123,6 +132,12 @@
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="newsImg1 != null" >
+        #{newsImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="newsImg2 != null" >
+        #{newsImg2,jdbcType=VARCHAR},
+      </if>
       <if test="newsCont != null" >
         #{newsCont,jdbcType=LONGVARCHAR},
       </if>
@@ -152,6 +167,12 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="newsImg1 != null" >
+        news_img1 = #{newsImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="newsImg2 != null" >
+        news_img2 = #{newsImg2,jdbcType=VARCHAR},
+      </if>
       <if test="newsCont != null" >
         news_cont = #{newsCont,jdbcType=LONGVARCHAR},
       </if>
@@ -167,6 +188,8 @@
       praise_num = #{praiseNum,jdbcType=INTEGER},
       browse_num = #{browseNum,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
+      news_img1 = #{newsImg1,jdbcType=VARCHAR},
+      news_img2 = #{newsImg2,jdbcType=VARCHAR},
       news_cont = #{newsCont,jdbcType=LONGVARCHAR}
     where news_id = #{newsId,jdbcType=INTEGER}
   </update>
@@ -178,7 +201,9 @@
       comment_num = #{commentNum,jdbcType=INTEGER},
       praise_num = #{praiseNum,jdbcType=INTEGER},
       browse_num = #{browseNum,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      news_img1 = #{newsImg1,jdbcType=VARCHAR},
+      news_img2 = #{newsImg2,jdbcType=VARCHAR}
     where news_id = #{newsId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -27,7 +27,7 @@ public class UserfeedbackController {
 			throws ServletException, IOException{
 		request.setCharacterEncoding("UTF-8");
 		JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
-		System.out.println(json1);
+		//System.out.println(json1);
 		String stuId = json1.getString("stu_id");
 		String keyword = json1.getString("keyword");
 		String comment = json1.getString("cont");

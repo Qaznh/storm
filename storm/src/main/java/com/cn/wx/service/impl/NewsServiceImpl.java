@@ -19,12 +19,14 @@ public class NewsServiceImpl implements INewsService{
 		return this.newsDao.selectByPrimaryKey(newsId);
 	}
 	
-	public int putNews(String stu_id,String keyword,String news_img,String news_cont,Timestamp datetime){
+	public int putNews(String stu_id,String keyword,String news_img,String news_img1,String news_img2,String news_cont,Timestamp datetime){
 		News news = new News();
 		news.setStuId(stu_id);
 		news.setKeyword(keyword);
 		news.setNewsCont(news_cont);
 		news.setNewsImg(news_img);
+		news.setNewsImg1(news_img1);
+		news.setNewsImg2(news_img2);
 		news.setCreateTime(datetime);
 	    int a = this.newsDao.insertSelective(news);
 	    return a;

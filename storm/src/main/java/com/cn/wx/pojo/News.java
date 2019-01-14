@@ -19,6 +19,10 @@ public class News {
 
     private Date createTime;
 
+    private String newsImg1;
+
+    private String newsImg2;
+
     private String newsCont;
 
     public Integer getNewsId() {
@@ -83,6 +87,22 @@ public class News {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getNewsImg1() {
+        return newsImg1;
+    }
+
+    public void setNewsImg1(String newsImg1) {
+        this.newsImg1 = newsImg1 == null ? null : newsImg1.trim();
+    }
+
+    public String getNewsImg2() {
+        return newsImg2;
+    }
+
+    public void setNewsImg2(String newsImg2) {
+        this.newsImg2 = newsImg2 == null ? null : newsImg2.trim();
     }
 
     public String getNewsCont() {
